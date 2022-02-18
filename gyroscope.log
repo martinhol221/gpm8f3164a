@@ -1,18 +1,5 @@
-Terminal log file Date: 15.02.2022 - 18:46:57
-baud rate: 77000, data bits 8, parity: none, Stop bit: 1  
------------------------------------------------
- 
+1  2  3  4  5  6  7  8  9 10 11
 
- |--------- const
- |  |---------- transverse slope, in a horizontal position = 00
- |  |  | --------- longitudinal tilt, horizontal
- |  |  |  | ------- 
- |  |  |  |  | ------- ?
- |  |  |  |  |       | ------ const
- |  |  |  |  |   --------
- |  |  |  |  |  |        |  | -------- optical pressure sensor 00 or O1
- |  |  |  |  |  |  |  |  |  |  | ---------- sum
- 1  2  3  4  5  6  7  8  9 10 11
 
 процесс наклона 
 5A 00 97 FD 0B 11 6A 12 FF 01 F6 
@@ -306,3 +293,18 @@ baud rate: 77000, data bits 8, parity: none, Stop bit: 1
 5A FF E8 FD FE 11 6A 12 FF 01 83
 
 
+Terminal log file Date: 15.02.2022 - 18:46:57
+baud rate: 77000, data bits 8, parity: none, Stop bit: 1  
+-----------------------------------------------
+ 
+
+ |--------- const
+ |  |---------- transverse slope, in a horizontal position = 00
+ |  |  | --------- longitudinal tilt, horizontal
+ |  |  |  | ------- 
+ |  |  |  |  | ------- ?
+ |  |  |  |  |       | ------ const
+ |  |  |  |  |   --------
+ |  |  |  |  |  |        |  | -------- optical pressure sensor 00 or O1
+ |  |  |  |  |  |  |  |  |  |  | ---------- sum
+ 1  2  3  4  5  6  7  8  9 10 11
