@@ -1,24 +1,8 @@
-Terminal log file Date: 15.02.2022 - 18:46:57
-baud rate: 77000, data bits 8, parity: none, Stop bit: 1  
------------------------------------------------
- 
 
- |--------- const
- |  |---------- transverse slope, in a horizontal position = 00
- |  |  | --------- longitudinal tilt, horizontal
- |  |  |  | ------- 
- |  |  |  |  | ------- ?
- |  |  |  |  |       | ------ const
- |  |  |  |  |   --------
- |  |  |  |  |  |        |  | -------- optical pressure sensor 00 or O1
- |  |  |  |  |  |        |  |  | ---------- sum
- 1  2  3  4  5  6  7  8  9 10 11
-
-процесс наклона 
-5A 00 97 FD 0B 11 6A 12 FF 01 F6 
-5A 00 96 FD 0E 11 6A 12 FF 01 F2 
-5A 00 96 FD 11 11 6A 12 FF 01 ED 
-5A 00 96 FD 14 11 6A 12 FF 01 E8 
+5A 00 97 FD 0B 11 6A 12 FF 01 F6
+5A 00 96 FD 0E 11 6A 12 FF 01 F2
+5A 00 96 FD 11 11 6A 12 FF 01 ED
+5A 00 96 FD 14 11 6A 12 FF 01 E8
 5A 00 96 FD 18 11 6A 12 FF 01 E4 
 5A 00 96 FD 1B 11 6A 12 FF 01 E7 
 5A 00 96 FD 1F 11 6A 12 FF 01 E3 
@@ -247,62 +231,3 @@ baud rate: 77000, data bits 8, parity: none, Stop bit: 1
 5A 00 F1 07 5F 11 6A 12 FF 01 3E 
 5A 00 F1 07 67 11 6A 12 FF 01 06 
 5A 00 F1 07 70 11 6A 12 FF 01 11 
-5A 00 F0 07 78 11 6A 12 FF 01 18 
-
-норамльное положение горизонт оба сенора включены
-
-5A 00 AC F9 96 11 6A 12 FF 01 54 
-5A 00 AC F9 96 11 6A 12 FF 01 54 
-5A 00 AC F9 95 11 6A 12 FF 01 57 
-5A 00 AC F9 95 11 6A 12 FF 01 57 
-5A 00 AC F9 95 11 6A 12 FF 01 57 
-5A 00 AC F9 95 11 6A 12 FF 01 57 
-5A 00 AC F9 95 11 6A 12 FF 01 57 
-5A 00 AC F9 95 11 6A 12 FF 01 57 
-5A 00 AC F9 95 11 6A 12 FF 01 57
-
-нормальное положение один сенсор
-5A 00 9E FA EB 11 6A 12 FF 01 18 
-5A 00 9E FA EB 11 6A 12 FF 01 18 
-5A 00 9E FA EA 11 6A 12 FF 01 19 
-5A 00 9E FA EA 11 6A 12 FF 01 19 
-5A 00 9E FA E9 11 6A 12 FF 01 1A 
-5A 00 9E FA E8 11 6A 12 FF 01 1B 
-5A 00 9E FA E8 11 6A 12 FF 01 1B 
-5A 00 9E FA E7 11 6A 12 FF 01 14 
-5A 00 9F FA E7 11 6A 12 FF 01 15
-
-5A 00 AB FA BB 11 6A 12 FF 01 7D 
-5A 00 AB FA BB 11 6A 12 FF 01 7D 
-5A 00 AB FA BA 11 6A 12 FF 01 7C 
-5A 00 AB FA BA 11 6A 12 FF 01 7C 
-5A 00 AB FA B9 11 6A 12 FF 01 7F 
-5A 00 AB FA B9 11 6A 12 FF 01 7F 
-5A 00 AB FA B8 11 6A 12 FF 01 7E 
-5A 00 AB FA B8 11 6A 12 FF 01 7E
-
-наклон 5
-
-5A 00 95 FA 5B 11 6A 12 FF 01 A3 
-5A 00 95 FA 5B 11 6A 12 FF 01 A3 
-5A 00 96 FA 5B 11 6A 12 FF 01 A0 
-5A 00 95 FA 5A 11 6A 12 FF 01 A2 
-5A 00 96 FA 5A 11 6A 12 FF 01 A1 
-5A 00 96 FA 5A 11 6A 12 FF 01 A1 
-5A 00 96 FA 5A 11 6A 12 FF 01 A1 
-5A 00 96 FA 5A 11 6A 12 FF 01 A1 
-5A 00 96 FA 5A 11 6A 12 FF 01 A1 
-
-наклон 10
-
-5A FF E8 FE 03 11 6A 12 FF 01 7D 
-5A FF E8 FE 02 11 6A 12 FF 01 7C 
-5A FF E8 FE 02 11 6A 12 FF 01 7C 
-5A FF E8 FE 01 11 6A 12 FF 01 7F 
-5A FF E8 FE 01 11 6A 12 FF 01 7F 
-5A FF E8 FE 00 11 6A 12 FF 01 7E 
-5A FF E8 FE 00 11 6A 12 FF 01 7E 
-5A FF E8 FD FF 11 6A 12 FF 01 82 
-5A FF E8 FD FE 11 6A 12 FF 01 83
-
-
