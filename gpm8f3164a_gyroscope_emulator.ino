@@ -28,3 +28,19 @@ Serial.write(0x8C);
 Serial.end(); delayMicroseconds(352); Serial.begin(77000);
 
 }
+
+
+
+#define FLA_pin 36
+int FLA[]; 
+
+FLA[3]=FLA[2]; FLA[2]=FLA[1]; FLA[1]=analogRead(FLA_pin); FLA[0]=FLA[1]+FLA[2]+FLA[3]/3;
+
+
+
+
+
+
+
+
+
