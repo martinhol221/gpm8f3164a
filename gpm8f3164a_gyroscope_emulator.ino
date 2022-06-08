@@ -35,24 +35,34 @@ Serial.end(); delayMicroseconds(352); Serial.begin(77000);
 #define RSV_pin 36
 #define FAN_pin 34
 #define FDR_pin 35
+#define FDR_motor ???????????? 
 
-unsigned int FLA[4]; RSV[4]; 
+unsigned int FLA[4]; RSV[4]; half_read;
 unsigned long COUNT_FAN; COUNT_FDR; 
+
 
 pinMode(FLA_pin, INPUT);
 pinMode(RSV_pin, INPUT);
 pinMode(FAN_pin, INPUT);
 pinMode(FDR_pin, INPUT);
+pinMode(FDR_motor, OUTPUT);
 
 attachInterrupt(digitalPinToInterrupt(FAN_pin), fan_steep_function, FALLING); // RISING,  
-attachInterrupt(digitalPinToInterrupt(FDR_pin), rsv_steep_function, FALLING); // RISING, 
+attachInterrupt(digitalPinToInterrupt(FDR_pin), FDR_OFF_function, CHANGE); // RISING, 
 
 
 
 void fan_steep_function() {COUNT_FAN++;}
-void rsv_steep_function() {COUNT_FDR++;}
+
+
+void FDR_ON_function(int half_count) {half_read = half_count;         digitalWrite(FDR_motor, HIGH);}
+void FDR_OFF_function()              {half_read--; if (half_read < 1) digitalWrite(FDR_motor,  LOW);}
+
+
 void read_pins_function() {FLA[3]=FLA[2]; FLA[2]=FLA[1]; FLA[1]=analogRead(FLA_pin); FLA[0]=FLA[1]+FLA[2]+FLA[3]/3;
                            RSV[3]=RSV[2]; RSV[2]=RSV[1]; RSV[1]=analogRead(RSV_pin); RSV[0]=RSV[1]+RSV[2]+RSV[3]/3;}
+
+
 
 
 
