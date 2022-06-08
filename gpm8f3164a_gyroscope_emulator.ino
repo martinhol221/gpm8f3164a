@@ -31,24 +31,25 @@ Serial.end(); delayMicroseconds(352); Serial.begin(77000);
 
 
 
-#define FLA_pin 39
-#define RSV_pin 36
-#define FAN_pin 34
-#define FDR_pin 35
-#define FDR_motor ???????????? 
+#define FLA_sensor 39
+#define RSV_sensor 36
+#define FAN_sensor 34
+#define FDR_sensor 35
+#define FDR_motor 18
+#define CLN_pin 19
 
 unsigned int FLA[4]; RSV[4]; half_read;
 unsigned long COUNT_FAN; COUNT_FDR; 
 
 
-pinMode(FLA_pin, INPUT);
-pinMode(RSV_pin, INPUT);
-pinMode(FAN_pin, INPUT);
-pinMode(FDR_pin, INPUT);
+pinMode(FLA_sensor, INPUT);
+pinMode(RSV_sensor, INPUT);
+pinMode(FAN_sensor, INPUT);
+pinMode(FDR_sensor, INPUT);
 pinMode(FDR_motor, OUTPUT);
 
-attachInterrupt(digitalPinToInterrupt(FAN_pin), fan_steep_function, FALLING); // RISING,  
-attachInterrupt(digitalPinToInterrupt(FDR_pin), FDR_OFF_function, CHANGE); // RISING, 
+attachInterrupt(digitalPinToInterrupt(FAN_sensor), fan_steep_function, FALLING); // RISING,  
+attachInterrupt(digitalPinToInterrupt(FDR_sensor), FDR_OFF_function, CHANGE); // RISING, 
 
 
 
@@ -59,8 +60,8 @@ void FDR_ON_function(int half_count) {half_read = half_count;         digitalWri
 void FDR_OFF_function()              {half_read--; if (half_read < 1) digitalWrite(FDR_motor,  LOW);}
 
 
-void read_pins_function() {FLA[3]=FLA[2]; FLA[2]=FLA[1]; FLA[1]=analogRead(FLA_pin); FLA[0]=FLA[1]+FLA[2]+FLA[3]/3;
-                           RSV[3]=RSV[2]; RSV[2]=RSV[1]; RSV[1]=analogRead(RSV_pin); RSV[0]=RSV[1]+RSV[2]+RSV[3]/3;}
+void read_pins_function() {FLA[3]=FLA[2]; FLA[2]=FLA[1]; FLA[1]=analogRead(FLA_sensor); FLA[0]=FLA[1]+FLA[2]+FLA[3]/3;
+                           RSV[3]=RSV[2]; RSV[2]=RSV[1]; RSV[1]=analogRead(RSV_sensor); RSV[0]=RSV[1]+RSV[2]+RSV[3]/3;}
 
 
 
