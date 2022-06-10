@@ -67,6 +67,7 @@ ledcAttachPin(FLUEGAS_pin, FluegasChannel);
 
 
 server.on("/test", handleTest);
+server.on("/testing", handleTesting);
 
 
 
@@ -82,7 +83,7 @@ void read_pins_function() {FLA[3]=FLA[2]; FLA[2]=FLA[1]; FLA[1]=analogRead(FLA_s
 
 
 
-void  handleTest(){ String http = "Данные не верны";
+void  handleTesting(){ String http = "Данные не верны";
                    
 if (server.arg("fan_pwm") !="")           int fan_pwm = constrain(server.arg("fan_pwm").toInt(), 0, 255);      ledcWrite(FanChannel, fan_pwm);      http = "Установлено ШИМ вентилятора "+String(fan_pwm);
 if (server.arg("fluegas_pwm") !="")   int fluegas_pwm = constrain(server.arg("fluegas_pwm").toInt(), 0, 255);  ledcWrite(FanChannel, fluegas_pwm);  http = "Установлено ШИМ дымососа "+String(fluegas_pwm);
@@ -90,6 +91,37 @@ if (server.arg("fdr_steep") !="")       int fdr_steep = constrain(server.arg("fd
 if (server.arg("freq_pwm") !="")             freq_pwm = constrain(server.arg("freq_pwm").toInt(), 10, 10000);                                       http = "Установлена частота ШИМ "+String(freq_pwm);
                 
 server.send(200, "text/html", head + http + footer);}   
+
+
+
+void handleTest(){String http = "<div>" + form_save("Тестирование","/test")
++ input_txt("Частота ШИМ для вентиляторов", "freq_pwm", String(freq_pwm), 1, 10)
++ input_txt("ШИМ для FAN", "fan_pwm", "0-255", 1, 10)
++ input_txt("ШИМ для FLUEGAS FAN", "fan_pwm", "0-255", 1, 10)      
++ input_txt("Задать движение шнека полуоборотов", "fdr_steep", "0-255", 1, 10)
++ submit("Начать тест");
+server.send(200, "text/html", head + http + homeButton + footer);}
+
+
+
+
+
+
+String input_txt(String lable, String name, String placeholder, int pat, int maxlength) { String pattern;
+
+switch (pat){
+case 0:  pattern = "pattern=\"^[a-zA-Z\\.0-9]+$\"";  break;  // все латинские
+case 1:  pattern = "pattern=\"[0-9]{0,10}\"";        break;  // int  [0-9]{0,10}
+case 2:  pattern = "pattern=\"\\d+(\\.\\d{2})?\"";   break;  // float \\d+(\\.\\d{2})? 
+case 3:  pattern = "pattern=\"\\+[0-9]{9,13}\"";     break;  // Tel
+default: pattern = "";}
+
+String i = "<label for=\"fname\">"+lable+"</label><input type=\"text\" "+pattern+" id=\"fname\" name=\""+name+"\" maxlength=\""+String(maxlength)+"\" placeholder=\""+placeholder+"\">";
+return i;}
+
+String form_action(String lable, String action) {String i = "<b>"+lable+"</b><br><br><form action=\""+action+"\">"; return i;}
+String submit(String opt) {String i = "<input type=\"submit\" value=\""+opt+"\"></form>"; return i;}
+
 
 
 
