@@ -37,10 +37,17 @@ Serial.end(); delayMicroseconds(352); Serial.begin(77000);
 #define FDR_sensor 35
 #define FDR_motor 18
 #define CLN_pin 19
+#define FAN_pin 33
+#define FLUEGAS_pin 32
+
+
 
 unsigned int FLA[4]; RSV[4]; half_read;
 unsigned long COUNT_FAN; COUNT_FDR; 
 
+const int FanChannel = 0;
+const int FluegasChannel = 1;
+      int freq_pwm = 300;
 
 pinMode(FLA_sensor, INPUT);
 pinMode(RSV_sensor, INPUT);
@@ -50,6 +57,16 @@ pinMode(FDR_motor, OUTPUT);
 
 attachInterrupt(digitalPinToInterrupt(FAN_sensor), fan_steep_function, FALLING); // RISING,  
 attachInterrupt(digitalPinToInterrupt(FDR_sensor), FDR_OFF_function, CHANGE); // RISING, 
+
+ledcSetup(FanChannel, freq_pwm, 8); 
+ledcAttachPin(FAN_pin, FanChannel);
+
+
+ledcSetup(FluegasChannel, freq_pwm, 8); 
+ledcAttachPin(FLUEGAS_pin, FluegasChannel);
+
+
+server.on("/test", handleTest);
 
 
 
@@ -65,8 +82,14 @@ void read_pins_function() {FLA[3]=FLA[2]; FLA[2]=FLA[1]; FLA[1]=analogRead(FLA_s
 
 
 
-
-
+void  handleTest(){ String http = "Данные не верны";
+                   
+if (server.arg("fan_pwm") !="")           int fan_pwm = constrain(server.arg("fan_pwm").toInt(), 0, 255);      ledcWrite(FanChannel, fan_pwm);      http = "Установлено ШИМ вентилятора "+String(fan_pwm);
+if (server.arg("fluegas_pwm") !="")   int fluegas_pwm = constrain(server.arg("fluegas_pwm").toInt(), 0, 255);  ledcWrite(FanChannel, fluegas_pwm);  http = "Установлено ШИМ дымососа "+String(fluegas_pwm);
+if (server.arg("fdr_steep") !="")       int fdr_steep = constrain(server.arg("fdr_steep").toInt(), 0, 255);    FDR_ON_function(fdr_steep);          http = "Задано поуоборотов шнека "+String(fdr_steep);
+if (server.arg("freq_pwm") !="")             freq_pwm = constrain(server.arg("freq_pwm").toInt(), 10, 10000);                                       http = "Установлена частота ШИМ "+String(freq_pwm);
+                
+server.send(200, "text/html", head + http + footer);}   
 
 
 
