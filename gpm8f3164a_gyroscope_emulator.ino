@@ -130,9 +130,9 @@ String submit(String opt) {String i = "<input type=\"submit\" value=\""+opt+"\">
 
 
 
-int fan_speed_convert (){
+float fan_speed_convert (){
       
-int speed = 1000000/((FAN_period[0]+FAN_period[1]+FAN_period[2])/3)*60;
+float speed = 1000000/((FAN_period[0]+FAN_period[1]+FAN_period[2])/3)*60;
 speed = constrain(speed, 0, 3000);
 return speed;}
 
