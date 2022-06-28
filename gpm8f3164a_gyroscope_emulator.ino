@@ -83,8 +83,8 @@ void FDR_ON_function(int half_count) {half_read = half_count;         digitalWri
 void FDR_OFF_function()              {half_read--; if (half_read < 1) digitalWrite(FDR_motor,  LOW);}
 
 
-void read_pins_function() {FLA[3]=FLA[2]; FLA[2]=FLA[1]; FLA[1]=analogRead(FLA_sensor); FLA[0]=FLA[1]+FLA[2]+FLA[3]/3;
-                           RSV[3]=RSV[2]; RSV[2]=RSV[1]; RSV[1]=analogRead(RSV_sensor); RSV[0]=RSV[1]+RSV[2]+RSV[3]/3;}
+void read_pins_function() {FLA[3]=FLA[2]; FLA[2]=FLA[1]; FLA[1]=analogRead(FLA_sensor); FLA[0]=(FLA[1]+FLA[2]+FLA[3])/3;
+                           RSV[3]=RSV[2]; RSV[2]=RSV[1]; RSV[1]=analogRead(RSV_sensor); RSV[0]=(RSV[1]+RSV[2]+RSV[3])/3;}
 
 
 
@@ -130,6 +130,10 @@ String submit(String opt) {String i = "<input type=\"submit\" value=\""+opt+"\">
 
 
 
-
+int fan_speed_convert (){
+      
+int speed = 1000000/((FAN_period[0]+FAN_period[1]+FAN_period[2])/3)*60;
+speed = constrain(speed, 0, 3000);
+return speed;}
 
 
