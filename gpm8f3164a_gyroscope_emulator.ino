@@ -43,7 +43,7 @@ Serial.end(); delayMicroseconds(352); Serial.begin(77000);
 
 
 unsigned int FLA[4]; RSV[4]; half_read;
-unsigned long COUNT_FAN; COUNT_FDR; 
+unsigned long COUNT_FDR; FAN_period[4]; FAN_time_last;
 
 const int FanChannel = 0;
 const int FluegasChannel = 1;
@@ -55,8 +55,8 @@ pinMode(FAN_sensor, INPUT);
 pinMode(FDR_sensor, INPUT);
 pinMode(FDR_motor, OUTPUT);
 
-attachInterrupt(digitalPinToInterrupt(FAN_sensor), fan_steep_function, FALLING); // RISING,  
-attachInterrupt(digitalPinToInterrupt(FDR_sensor), FDR_OFF_function, CHANGE); // RISING, 
+attachInterrupt(digitalPinToInterrupt(FAN_sensor), fan_steep_function, CHANGE); // RISING,  
+attachInterrupt(digitalPinToInterrupt(FDR_sensor), FDR_OFF_function,   CHANGE); // RISING, 
 
 ledcSetup(FanChannel, freq_pwm, 8); 
 ledcAttachPin(FAN_pin, FanChannel);
@@ -71,7 +71,12 @@ server.on("/testing", handleTesting);
 
 
 
-void fan_steep_function() {COUNT_FAN++;}
+void fan_steep_function() {
+   
+FAN_period[2] = FAN_period[1]; FAN_period[1] = FAN_period[0];
+FAN_period[0] = micros() - FAN_time_last; FAN_time_last = micros();
+      
+}
 
 
 void FDR_ON_function(int half_count) {half_read = half_count;         digitalWrite(FDR_motor, HIGH);}
