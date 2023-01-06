@@ -306,5 +306,5 @@ baud rate: 77000, data bits 8, parity: none, Stop bit: 1
  |  |  |  |  |       | ------ const
  |  |  |  |  |   --------
  |  |  |  |  |  |        |  | -------- optical pressure sensor 00 or O1
- |  |  |  |  |  |  |  |  |  |  | ---------- sum
+ |  |  |  |  |  |  |  |  |  |  | --------- = 2 xor 3 xor 4 xor 5 xor 6 xor 7 xor 8 xor 9 xor 10
  1  2  3  4  5  6  7  8  9 10 11
