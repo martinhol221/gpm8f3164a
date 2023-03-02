@@ -1,0 +1,28 @@
+//http://wiki.amperka.ru/articles:gps:nmea
+
+{
+"gps":
+[
+1,                // gps_gps 0 / 1
+56.456789,        // gps_lat     
+27.124560,        // gps_lon
+127.45,           // gps_angle
+45.45,            // gps_speed  
+14                // gps_sat
+],
+"angle":125.45,   // mag_angle
+"count":12,       // count
+"vbat":12.85,     // voltage
+"uptime":12.85,   // uptime
+"nextpoint":
+[
+1,                // next_point 0 / 255
+56.456489,        // next_lat 
+27.124860,        // next_lon
+177.45,           // next_angle
+215.45            // next_dist
+]
+
+
+
+}
