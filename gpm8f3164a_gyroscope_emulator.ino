@@ -14,15 +14,20 @@ int acceleratorValue = analogRead(AC_pin);
 acceleratorValue= map(acceleratorValue,174,868,0,255);
 acceleratorValue = constrain(acceleratorValue, 0,255);
   
-Serial.write(speed_byte[0]);  Serial.write(speed_byte[1]); 
+Serial.write(speed_byte[0]); // const
+Serial.write(speed_byte[1]); // transverse slope, in a horizontal position = 00
 Serial.end(); delayMicroseconds(45);Serial.begin(77000);
-Serial.write(speed_byte[2]); Serial.write(speed_byte[3]); 
+Serial.write(speed_byte[2]); // ?
+Serial.write(speed_byte[3]); // ?
 Serial.end(); delayMicroseconds(45); Serial.begin(77000);
-Serial.write(acceleratorValue); Serial.write(speed_byte[5]); 
+Serial.write(acceleratorValue); // speed
+Serial.write(speed_byte[5]); // const
 Serial.end(); delayMicroseconds(45); Serial.begin(77000);
-Serial.write(speed_byte[6]); Serial.write(speed_byte[7]); 
+Serial.write(speed_byte[6]); // const
+Serial.write(speed_byte[7]); // const
 Serial.end(); delayMicroseconds(45); Serial.begin(77000);
-Serial.write(speed_byte[8]); Serial.write(speed_byte[9]); 
+Serial.write(speed_byte[8]); // const
+Serial.write(speed_byte[9]); // optical pressure sensor 00 or O1
 Serial.end(); delayMicroseconds(45); Serial.begin(77000);
 Serial.write(speed_byte[1]^speed_byte[2]^speed_byte[3]^acceleratorValue^speed_byte[5]^speed_byte[6]^speed_byte[7]^speed_byte[8]^speed_byte[9]); 
 Serial.end(); delayMicroseconds(352); Serial.begin(77000);
